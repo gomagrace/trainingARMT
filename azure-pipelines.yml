@@ -13,42 +13,42 @@ stages:
         pool:
           vmimage: windows-latest
         steps:
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'az-connection'
-    subscriptionId: 'b4f462dd-7c9b-4f7c-991b-ec079ba50b3d'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Lab-RG'
-    location: 'West US'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(Build.SourcesDirectory)/ARMT/appgw.json'
-    csmParametersFile: '$(Build.SourcesDirectory)/ARMT/db.json'
-    overrideParameters: 'db'
-    deploymentMode: 'Incremental'
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'az-connection'
-    subscriptionId: 'b4f462dd-7c9b-4f7c-991b-ec079ba50b3d'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Lab-RG'
-    location: 'West US'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(Build.SourcesDirectory)/ARMT/webapp.json'
-    csmParametersFile: '$(Build.SourcesDirectory)/ARMT/webapp.json'
-    overrideParameters: 'webapp'
-    deploymentMode: 'Incremental'
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'az-connection'
-    subscriptionId: 'b4f462dd-7c9b-4f7c-991b-ec079ba50b3d'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'Lab-RG'
-    location: 'West US'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(Build.SourcesDirectory)/ARMT/webapp.json'
-    csmParametersFile: '$(Build.SourcesDirectory)/ARMT/appgw.json'
-    overrideParameters: 'appgw'
-    deploymentMode: 'Incremental'
+          - task: AzureResourceManagerTemplateDeployment@3
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'az-connection'
+              subscriptionId: 'b4f462dd-7c9b-4f7c-991b-ec079ba50b3d'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'Lab-RG'
+              location: 'West US'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(Build.SourcesDirectory)/ARMT/appgw.json'
+              csmParametersFile: '$(Build.SourcesDirectory)/ARMT/db.json'
+              overrideParameters: 'db'
+              deploymentMode: 'Validation'
+          - task: AzureResourceManagerTemplateDeployment@3
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'az-connection'
+              subscriptionId: 'b4f462dd-7c9b-4f7c-991b-ec079ba50b3d'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'Lab-RG'
+              location: 'West US'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(Build.SourcesDirectory)/ARMT/webapp.json'
+              csmParametersFile: '$(Build.SourcesDirectory)/ARMT/webapp.json'
+              overrideParameters: 'webapp'
+              deploymentMode: 'Validation'
+          - task: AzureResourceManagerTemplateDeployment@3
+            inputs:
+              deploymentScope: 'Resource Group'
+              azureResourceManagerConnection: 'az-connection'
+              subscriptionId: 'b4f462dd-7c9b-4f7c-991b-ec079ba50b3d'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'Lab-RG'
+              location: 'West US'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(Build.SourcesDirectory)/ARMT/webapp.json'
+              csmParametersFile: '$(Build.SourcesDirectory)/ARMT/appgw.json'
+              overrideParameters: 'appgw'
+              deploymentMode: 'Validation'
